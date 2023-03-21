@@ -1,10 +1,11 @@
 public class BinarySearch {
     public static int search(int[] array, int searchedValue) {
-        if (array == null || array.length == 0) return -1;
-        return search(array, searchedValue, 0, array.length - 1);
+        return searchRecursive(array, searchedValue, 0, array.length - 1);
     }
 
-    private static int search(int[] array, int searchedValue, int low, int high) {
+    private static int searchRecursive(int[] array, int searchedValue, int low, int high) {
+        if (array == null || array.length == 0) return -1;
+
         // When the low is equal or higher then the high indicates this that there is no value like this.
         if (low > high) {
             return -1;
@@ -21,6 +22,27 @@ public class BinarySearch {
             return mid;
         }
 
-        return search(array, searchedValue, low, high);
+        return searchRecursive(array, searchedValue, low, high);
+    }
+
+    private static int searchIterativ(int array[], int searchedValue, int low, int high) {
+        if(array == null || array.length == 0) {
+            return -1;
+        }
+
+        while(low <= high) {
+            int mid = (high + low) / 2;
+            int midValue = array[mid];
+
+            if(midValue < searchedValue) {
+                low = mid + 1;
+            } else if(midValue > searchedValue) {
+                high = mid - 1;
+            } else {
+                return mid;
+            }
+        }
+
+        return -1;
     }
 }
