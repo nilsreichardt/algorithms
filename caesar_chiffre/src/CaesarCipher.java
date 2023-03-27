@@ -21,6 +21,7 @@ public class CaesarCipher {
     }
 
     public static void main(String[] args) {
-        "🎉".codePoints().forEach(System.out::println);
+       String text = encrypt("Hallo!");
+        System.out.println(text);
     }
 }
